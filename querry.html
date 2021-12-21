@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Your description" />
+    <meta name="author" content="Your name" />
+
+    <!-- OG Meta Tags to improve the way the post looks when you share the page on Facebook, Twitter, LinkedIn -->
+    <meta property="og:site_name" content="" />
+    <!-- website name -->
+    <meta property="og:site" content="" />
+    <!-- website link -->
+    <meta property="og:title" content="" />
+    <!-- title shown in the actual shared post -->
+    <meta property="og:description" content="" />
+    <!-- description shown in the actual shared post -->
+    <meta property="og:image" content="" />
+    <!-- image link, make sure it's jpg -->
+    <meta property="og:url" content="" />
+    <!-- where do you want your post to link to -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- to have large image post format in Twitter -->
+
+    <!-- Webpage Title -->
+    <title>Krizantema Upiti</title>
+
+    <!-- Styles -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/fontawesome-all.min.css" rel="stylesheet" />
+    <link href="css/swiper.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+
+    <!-- Favicon  -->
+    <link rel="icon" href="images/favicon.png" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav
+      id="navbar"
+      class="navbar navbar-expand-lg fixed-top navbar-dark"
+      aria-label="Main navigation"
+    >
+      <div class="container">
+        <!-- Image Logo -->
+        <a class="navbar-brand logo-image" href="index.html"
+          ><img src="images/NAJBOLJI.png" alt="alternative"
+        /></a>
+
+        <!-- Text Logo - Use this if you don't have a graphic logo -->
+        <!-- <a class="navbar-brand logo-text" href="index.html">Elma</a> -->
+      </div>
+      <!-- end of container -->
+    </nav>
+    <!-- end of navbar -->
+    <!-- end of navigation -->
+
+    <!-- Header -->
+    <header class="ex-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-10 offset-xl-1">
+            <h1>Lista upita</h1>
+          </div>
+          <!-- end of col -->
+        </div>
+        <!-- end of row -->
+      </div>
+      <!-- end of container -->
+    </header>
+    <!-- end of ex-header -->
+    <!-- end of header -->
+
+    <div class="container">
+        <button onClick="getMessags()" class="btn btn-dark" style="margin: 10px;">Izlistaj sve upite</button>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Ime</th>
+              <th>Email</th>
+              <th>Upit</th>
+            </tr>
+          </thead>
+          <tbody id="data">
+      
+          </tbody>
+        </table>
+      </div>
+
+    <script>
+      function getMessags(){
+        const base_url = 'https://61a7497a387ab200171d2bb0.mockapi.io/api/users';
+        
+            const addItems = async () => {
+                try {
+                    const response = await axios.get(`${base_url}`);
+                    const newMessage = response.data;
+                    if (response.data.length > 0) {
+                        var temp = "";
+                        response.data.forEach((itemData) => {
+                            temp += "<tr>";
+                            temp += "<td>" + itemData.name + "</td>";
+                            temp += "<td>" + itemData.email + "</td>";
+                            temp += "<td>" + itemData.message + "</td></tr>";
+                        });
+                        document.getElementById("data").innerHTML = temp;
+                    
+                    }
+                    return newMessage;
+                } catch (errors) {
+                    console.error(errors);
+                }
+            }
+            addItems();
+
+
+        }
+    </script>
+
+    <!-- Back To Top Button -->
+    <button onclick="topFunction()" id="myBtn">
+      <img src="images/up-arrow.png" alt="alternative" />
+    </button>
+    <!-- end of back to top button -->
+
+    <!-- Scripts -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Bootstrap framework -->
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script><!-- Axios -->
+
+    <script src="js/swiper.min.js"></script>
+    <!-- Swiper for image and text sliders -->
+    <script src="js/purecounter.min.js"></script>
+    <!-- Purecounter counter for statistics numbers -->
+    <script src="js/scripts.js"></script>
+    <!-- Custom scripts -->
+  </body>
+</html>
